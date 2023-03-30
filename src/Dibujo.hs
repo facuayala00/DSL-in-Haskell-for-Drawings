@@ -36,14 +36,16 @@ figura x = Figura x
 
 rotar = undefined --Gaston
 
-espejar = undefined --Facu
+espejar :: Dibujo a -> Dibujo a --Facu
+espejar x = Espejar x
 
 rot45 :: Dibujo a -> Dibujo a --Benja
 rot45 = undefined --No se que hacer aca.
 
 apilar = undefined --Gaston
 
-juntar = undefined --Facu
+juntar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a --Facu
+juntar x y z w = Juntar x y z w
 
 encimar :: Dibujo a -> Dibujo a -> Dibujo a --Benja
 encimar x y = Encimar x y 
@@ -52,8 +54,10 @@ encimar x y = Encimar x y
 -- Rotaciones de múltiplos de 90.
 r180 = undefined --Gaston
 
+
 r270 :: Dibujo a -> Dibujo a
-r270 =  undefined --Facu
+r270 a = Rotar (Rotar (Rotar a)) -- no tengo idea si esto es asi xd 
+
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
 (.-.) = undefined --Benja
