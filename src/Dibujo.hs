@@ -66,7 +66,8 @@ r270 a = Rotar (Rotar (Rotar a)) -- no tengo idea si esto es asi xd
 (.-.) = undefined --Benja
 
 -- Pone una figura al lado de la otra, ambas ocupan el mismo espacio.
-(///) = undefined --Gaston
+(///) :: Dibujo a -> Dibujo a -> Dibujo a --Gaston
+(///) a b = Juntar 0 0 a b
 
 -- Superpone una figura con otra.
 (^^^) = undefined --Facu
@@ -75,7 +76,8 @@ r270 a = Rotar (Rotar (Rotar a)) -- no tengo idea si esto es asi xd
 cuarteto = undefined --Benja
 
 -- Una figura repetida con las cuatro rotaciones, superpuestas.
-encimar4 = undefined --Gaston
+encimar4 :: Dibujo a -> Dibujo a --Gaston
+encimar4 a = encimar(r270 encimar(r180 encimar (a (rotar a))))
 
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
