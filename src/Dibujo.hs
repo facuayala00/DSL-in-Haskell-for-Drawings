@@ -39,7 +39,7 @@ rotar = undefined --Gaston
 espejar = undefined --Facu
 
 rot45 :: Dibujo a -> Dibujo a --Benja
-rot45 = undefined --No se que hacer aca.
+rot45 x = Rot45 x
 
 apilar = undefined --Gaston
 
