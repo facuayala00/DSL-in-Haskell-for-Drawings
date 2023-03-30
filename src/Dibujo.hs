@@ -19,14 +19,21 @@ Gramática de las figuras:
 -}
 
 
-data Dibujo a = Borrar -- Completar
+data Dibujo a = Vacio
+    | Figura a
+    | Rotar (Dibujo a) 
+    | Espejar (Dibujo a) 
+    | Rot45 (Dibujo a)
+    | Apilar (Float) (Float) (Dibujo a) (Dibujo a) 
+    | Juntar (Float) (Float) (Dibujo a) (Dibujo a) 
+    | Encimar (Dibujo a) (Dibujo a)
     deriving (Eq, Show)
 
 -- Agreguen los tipos y definan estas funciones
 
 -- Construcción de dibujo. Abstraen los constructores.
 
-figura = undefined
+figura = undefined 
 
 rotar = undefined
 
@@ -45,7 +52,7 @@ encimar = undefined
 r180 = undefined
 
 r270 :: Dibujo a -> Dibujo a
-r270 = undefined
+r270 = 
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
 (.-.) = undefined
