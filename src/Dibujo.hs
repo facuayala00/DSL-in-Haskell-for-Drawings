@@ -34,14 +34,16 @@ data Dibujo a = Figura a
 figura :: Dibujo a -> Figura a --Benja
 figura x = Figura x 
 
-rotar = undefined --Gaston
+rotar :: Dibujo a -> Dibujo a --Gaston
+rotar a = Rotar a
 
 espejar = undefined --Facu
 
 rot45 :: Dibujo a -> Dibujo a --Benja
 rot45 x = Rot45 x
 
-apilar = undefined --Gaston
+apilar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a --Gaston
+apilar x y a b = Apilar x y a b
 
 juntar = undefined --Facu
 
@@ -50,7 +52,8 @@ encimar x y = Encimar x y
 
 
 -- Rotaciones de múltiplos de 90.
-r180 = undefined --Gaston
+r180 :: Dibujo a -> Dibujo a  --Gaston
+r180 a = Rotar (Rotar a)
 
 r270 :: Dibujo a -> Dibujo a
 r270 =  undefined --Facu
