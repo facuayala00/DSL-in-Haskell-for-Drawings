@@ -55,19 +55,20 @@ encimar x y = Encimar x y
 
 -- Rotaciones de múltiplos de 90.
 r180 :: Dibujo a -> Dibujo a  --Gaston
-r180 a = Rotar (Rotar a)
+r180 a = rotar (rotar a)
 
 
 r270 :: Dibujo a -> Dibujo a
-r270 a = Rotar (Rotar (Rotar a)) -- no tengo idea si esto es asi xd 
+r270 a = rotar (rotar (rotar a)) -- no tengo idea si esto es asi xd 
 
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
-(.-.) = undefined --Benja
+(.-.) :: Dibujo a -> Dibujo a -> Dibujo a --Benja
+(.-.) x y = Apilar 0 0 x y
 
 -- Pone una figura al lado de la otra, ambas ocupan el mismo espacio.
 (///) :: Dibujo a -> Dibujo a -> Dibujo a --Gaston
-(///) a b = Juntar 0 0 a b
+(///) a b = juntar 0 0 a b
 
 -- Superpone una figura con otra.
 (^^^) = undefined --Facu
