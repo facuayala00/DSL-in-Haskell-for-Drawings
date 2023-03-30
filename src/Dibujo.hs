@@ -33,45 +33,45 @@ data Dibujo a = Vacio
 
 -- Construcción de dibujo. Abstraen los constructores.
 
-figura = undefined 
+figura = undefined --Benja
 
-rotar = undefined
+rotar = undefined --Gaston
 
-espejar = undefined
+espejar = undefined --Facu
 
-rot45 = undefined
+rot45 = undefined --Benja
 
-apilar = undefined
+apilar = undefined --Gaston
 
-juntar = undefined
+juntar = undefined --Facu
 
-encimar = undefined
+encimar = undefined --Benja
 
 
 -- Rotaciones de múltiplos de 90.
-r180 = undefined
+r180 = undefined --Gaston
 
 r270 :: Dibujo a -> Dibujo a
-r270 = 
+r270 =  undefined --Facu
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
-(.-.) = undefined
+(.-.) = undefined --Benja
 
 -- Pone una figura al lado de la otra, ambas ocupan el mismo espacio.
-(///) = undefined
+(///) = undefined --Gaston
 
 -- Superpone una figura con otra.
-(^^^) = undefined
+(^^^) = undefined --Facu
 
 -- Dadas cuatro figuras las ubica en los cuatro cuadrantes.
-cuarteto = undefined
+cuarteto = undefined --Benja
 
 -- Una figura repetida con las cuatro rotaciones, superpuestas.
-encimar4 = undefined
+encimar4 = undefined --Gaston
 
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
-ciclar = undefined
+ciclar = undefined --Facu
 
 -- Estructura general para la semántica (a no asustarse). Ayuda: 
 -- pensar en foldr y las definiciones de Floatro a la lógica
@@ -80,11 +80,11 @@ foldDib :: (a -> b) -> (b -> b) -> (b -> b) -> (b -> b) ->
        (Float -> Float -> b -> b -> b) -> 
        (b -> b -> b) ->
        Dibujo a -> b
-foldDib = undefined
+foldDib = undefined --Benja
 
 -- Demostrar que `mapDib figura = id`
 mapDib :: (a -> Dibujo b) -> Dibujo a -> Dibujo b
-mapDib = undefined
+mapDib = undefined --Facu
 
 -- Junta todas las figuras básicas de un dibujo.
-figuras = undefined
+figuras = undefined --Gaston
