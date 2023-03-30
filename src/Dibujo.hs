@@ -19,8 +19,7 @@ Gramática de las figuras:
 -}
 
 
-data Dibujo a = Vacio
-    | Figura a
+data Dibujo a = Figura a
     | Rotar (Dibujo a) 
     | Espejar (Dibujo a) 
     | Rot45 (Dibujo a)
@@ -32,20 +31,22 @@ data Dibujo a = Vacio
 -- Agreguen los tipos y definan estas funciones
 
 -- Construcción de dibujo. Abstraen los constructores.
-
-figura = undefined --Benja
+figura :: Dibujo a -> Figura a --Benja
+figura x = Figura x 
 
 rotar = undefined --Gaston
 
 espejar = undefined --Facu
 
-rot45 = undefined --Benja
+rot45 :: Dibujo a -> Dibujo a --Benja
+rot45 = undefined --No se que hacer aca.
 
 apilar = undefined --Gaston
 
 juntar = undefined --Facu
 
-encimar = undefined --Benja
+encimar :: Dibujo a -> Dibujo a -> Dibujo a --Benja
+encimar x y = Encimar x y 
 
 
 -- Rotaciones de múltiplos de 90.
