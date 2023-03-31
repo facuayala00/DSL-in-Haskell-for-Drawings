@@ -32,7 +32,7 @@ data Dibujo a = Figura a
 
 -- Construcción de dibujo. Abstraen los constructores.
 figura :: Dibujo a -> Figura a --Benja
-figura x = Figura x 
+figura = Figura
 
 rotar :: Dibujo a -> Dibujo a --Gaston
 rotar a = Rotar a
@@ -55,16 +55,20 @@ encimar x y = Encimar x y
 
 -- Rotaciones de múltiplos de 90.
 r180 :: Dibujo a -> Dibujo a  --Gaston
-r180 a = rotar (rotar a)
+-- r180 a = rotar (rotar a)
+r180 = rotar . rotar
 
 
 r270 :: Dibujo a -> Dibujo a
-r270 a = rotar (rotar (rotar a)) -- no tengo idea si esto es asi xd 
+-- r270 a = rotar (rotar (rotar a)) -- no tengo idea si esto es asi xd 
+
 
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
 (.-.) :: Dibujo a -> Dibujo a -> Dibujo a --Benja
 (.-.) x y = Apilar 0 0 x y
+
+--escalas 1 1 (0.5 0.5), 2 3 (1/3 2/3)
 
 -- Pone una figura al lado de la otra, ambas ocupan el mismo espacio.
 (///) :: Dibujo a -> Dibujo a -> Dibujo a --Gaston
@@ -78,7 +82,7 @@ cuarteto = undefined --Benja
 
 -- Una figura repetida con las cuatro rotaciones, superpuestas.
 encimar4 :: Dibujo a -> Dibujo a --Gaston
-encimar4 a = encimar(r270 encimar(r180 encimar (a (rotar a))))
+encimar4 a = encimar(r270 encimar(r180 encimar (a (rotar a)))) --medio raro
 
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
@@ -91,7 +95,10 @@ foldDib :: (a -> b) -> (b -> b) -> (b -> b) -> (b -> b) ->
        (Float -> Float -> b -> b -> b) -> 
        (b -> b -> b) ->
        Dibujo a -> b
-foldDib = undefined --Benja
+foldDib fig rot90 esp rot45 api jun enc (Figura a) =
+foldDib fig rot90 esp rot45 api jun enc (Rotar a)  = 
+foldDib fig rot90 esp rot45 api jun enc (Espejar a) = 
+ 
 
 -- Demostrar que `mapDib figura = id`
 mapDib :: (a -> Dibujo b) -> Dibujo a -> Dibujo b
