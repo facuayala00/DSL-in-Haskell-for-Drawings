@@ -35,22 +35,22 @@ figura :: Dibujo a -> Figura a --Benja
 figura = Figura
 
 rotar :: Dibujo a -> Dibujo a --Gaston
-rotar a = Rotar a
+rotar = Rotar
 
 espejar :: Dibujo a -> Dibujo a --Facu
-espejar x = Espejar x
+espejar = Espejar
 
 rot45 :: Dibujo a -> Dibujo a --Benja
-rot45 x = Rot45 x
+rot45 = Rot45
 
 apilar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a --Gaston
-apilar x y a b = Apilar x y a b
+apilar = Apilar
 
 juntar :: Float -> Float -> Dibujo a -> Dibujo a -> Dibujo a --Facu
-juntar x y z w = Juntar x y z w
+juntar = Juntar
 
 encimar :: Dibujo a -> Dibujo a -> Dibujo a --Benja
-encimar x y = Encimar x y 
+encimar = Encimar 
 
 
 -- Rotaciones de múltiplos de 90.
@@ -61,18 +61,19 @@ r180 = rotar . rotar
 
 r270 :: Dibujo a -> Dibujo a
 -- r270 a = rotar (rotar (rotar a)) -- no tengo idea si esto es asi xd 
+r270 = rotar . rotar . rotar
 
 
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
 (.-.) :: Dibujo a -> Dibujo a -> Dibujo a --Benja
-(.-.) x y = Apilar 0 0 x y
+(.-.) x y = Apilar 1 1 x y --le pongo el 1 1 el tema de la escala pero hay que ver bien que onda
 
 --escalas 1 1 (0.5 0.5), 2 3 (1/3 2/3)
 
 -- Pone una figura al lado de la otra, ambas ocupan el mismo espacio.
 (///) :: Dibujo a -> Dibujo a -> Dibujo a --Gaston
-(///) a b = juntar 0 0 a b
+(///) a b = juntar 1 1 a b
 
 -- Superpone una figura con otra.
 (^^^) = undefined --Facu
