@@ -79,7 +79,8 @@ r270 = rotar . rotar . rotar
 (^^^) = undefined --Facu
 
 -- Dadas cuatro figuras las ubica en los cuatro cuadrantes.
-cuarteto = undefined --Benja
+cuarteto :: Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a --Benja
+cuarteto d1 d2 d3 d4 = (.-.) ((///) d1 d2) ((///) d3 d4)
 
 -- Una figura repetida con las cuatro rotaciones, superpuestas.
 encimar4 :: Dibujo a -> Dibujo a --Gaston
@@ -96,10 +97,23 @@ foldDib :: (a -> b) -> (b -> b) -> (b -> b) -> (b -> b) ->
        (Float -> Float -> b -> b -> b) -> 
        (b -> b -> b) ->
        Dibujo a -> b
-foldDib fig rot90 esp rot45 api jun enc (Figura a) =
-foldDib fig rot90 esp rot45 api jun enc (Rotar a)  = 
-foldDib fig rot90 esp rot45 api jun enc (Espejar a) = 
- 
+foldDib f r es r45 ap ju en (Figura x) = figura x 
+foldDib f r es r45 ap ju en (Rotar x)  = rotar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Espejar x) = espejar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Rot45 x) = rot45 (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Apilar x) = apilar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Juntar x) = juntar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Encimar x) = encimar (foldDib f r es r45 ap ju en x)
+
+{- 
+    f = figura
+    r = rotar 
+    es = espejar
+    r45 = rotar45
+    ap = apilar
+    ju = juntar
+    en = encimar
+-}
 
 -- Demostrar que `mapDib figura = id`
 mapDib :: (a -> Dibujo b) -> Dibujo a -> Dibujo b
