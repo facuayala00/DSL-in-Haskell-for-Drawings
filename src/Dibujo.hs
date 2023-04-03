@@ -77,7 +77,7 @@ r270 = rotar . rotar . rotar
 
 -- Superpone una figura con otra.
 (^^^) :: Dibujo a -> Dibujo a -> Dibujo a --Facu
-(^^^) a b = undefined 
+(^^^) a b = encimar a b 
 
 -- Dadas cuatro figuras las ubica en los cuatro cuadrantes.
 cuarteto :: Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a --Benja
@@ -90,7 +90,12 @@ encimar4 a = encimar(r270 encimar(r180 encimar (a (rotar a)))) --medio raro
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
 ciclar :: Dibujo a -> Dibujo a --Facu
-ciclar x = undefined 
+ciclar x = (.-.)((///) a (rotar a)) ((///) (r180 a) (r270 a))
+{-
+    r180    r270
+    r0       r90
+    Creo que asi esta bien el orden, pero no estoy seguro 
+-}
 
 -- Estructura general para la semántica (a no asustarse). Ayuda: 
 -- pensar en foldr y las definiciones de Floatro a la lógica
