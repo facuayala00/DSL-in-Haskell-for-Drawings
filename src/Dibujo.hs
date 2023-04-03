@@ -76,7 +76,8 @@ r270 = rotar . rotar . rotar
 (///) a b = juntar 1 1 a b
 
 -- Superpone una figura con otra.
-(^^^) = undefined --Facu
+(^^^) :: Dibujo a -> Dibujo a -> Dibujo a --Facu
+(^^^) a b = undefined 
 
 -- Dadas cuatro figuras las ubica en los cuatro cuadrantes.
 cuarteto :: Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a -> Dibujo a --Benja
@@ -88,7 +89,8 @@ encimar4 a = encimar(r270 encimar(r180 encimar (a (rotar a)))) --medio raro
 
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
-ciclar = undefined --Facu
+ciclar :: Dibujo a -> Dibujo a --Facu
+ciclar x = undefined 
 
 -- Estructura general para la semántica (a no asustarse). Ayuda: 
 -- pensar en foldr y las definiciones de Floatro a la lógica
@@ -115,9 +117,10 @@ foldDib f r es r45 ap ju en (Encimar x) = encimar (foldDib f r es r45 ap ju en x
     en = encimar
 -}
 
--- Demostrar que `mapDib figura = id`
+-- Demostrar que `mapDib figura = id` --Facu
 mapDib :: (a -> Dibujo b) -> Dibujo a -> Dibujo b
-mapDib = undefined --Facu
+mapDib fun x = undefined 
 
--- Junta todas las figuras básicas de un dibujo.
-figuras = undefined --Gaston
+-- Junta todas las figuras básicas de un dibujo. --Gaston
+figuras :: Dibujo a -> [a]
+figuras x = undefined 
