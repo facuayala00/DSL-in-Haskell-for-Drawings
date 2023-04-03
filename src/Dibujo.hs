@@ -67,7 +67,7 @@ r270 = rotar . rotar . rotar
 
 -- Pone una figura sobre la otra, ambas ocupan el mismo espacio.
 (.-.) :: Dibujo a -> Dibujo a -> Dibujo a --Benja
-(.-.) x y = Apilar 1 1 x y --le pongo el 1 1 el tema de la escala pero hay que ver bien que onda
+(.-.) x y = apilar 1 1 x y --le pongo el 1 1 el tema de la escala pero hay que ver bien que onda
 
 --escalas 1 1 (0.5 0.5), 2 3 (1/3 2/3)
 
