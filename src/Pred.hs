@@ -30,8 +30,8 @@ allDib pred x = undefined
 
 -- Los dos predicados se cumplen para el elemento recibido.
 andP :: Pred a -> Pred a -> Pred a
-andP pred1 pred2 = undefined
+andP pred1 pred2 = pred1 && pred2
 
 -- Algún predicado se cumple para el elemento recibido.
 orP :: Pred a -> Pred a -> Pred a
-orP pred1 pred2 = undefined
+orP pred1 pred2 = pred1 || pred2
