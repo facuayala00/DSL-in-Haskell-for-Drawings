@@ -85,7 +85,7 @@ cuarteto d1 d2 d3 d4 = (.-.) ((///) d1 d2) ((///) d3 d4)
 
 -- Una figura repetida con las cuatro rotaciones, superpuestas.
 encimar4 :: Dibujo a -> Dibujo a --Gaston
-encimar4 a = encimar(r270 encimar(r180 encimar (a (rotar a)))) --medio raro
+encimar4 a = (^^^) ((^^^) a (rotar a)) ((^^^) (r180 a) (r270 a))
 
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
@@ -128,4 +128,10 @@ mapDib fun x = undefined
 
 -- Junta todas las figuras básicas de un dibujo. --Gaston
 figuras :: Dibujo a -> [a]
-figuras x = undefined 
+figuras (Figura x) = [x]
+figuras (Rotar x) = figuras x
+figuras (Espejar x) = figuras x
+figuras (Rot45 x) = figuras x
+figuras (Apilar x y z w) = figuras z ++ figuras w
+figuras (Juntar x y z w) = figuras z ++ figuras w
+figuras (Encimar x y) = figuras x ++ figuras y
