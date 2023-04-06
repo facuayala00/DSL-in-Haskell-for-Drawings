@@ -17,16 +17,16 @@ type Pred a = a -> Bool
 -- Por ejemplo, `cambiar (== Triangulo) (\x -> Rotar (Figura x))` rota
 -- todos los triángulos.
 cambiar :: Pred a -> (a -> Dibujo a) -> Dibujo a -> Dibujo a
-cambiar pred fun x = undefined
+cambiar pred fun x = mapDib (\x -> if pred x then fun x else Figura x) x
 
 
 -- Alguna figura satisface el predicado.
 anyFig :: Pred a -> Dibujo a -> Bool
-anyDib pred x = undefined
+anyFig pred x = foldDib (\x -> pred x ||) False x
 
 -- Todas las figuras satisfacen el predicado.
 allFig :: Pred a -> Dibujo a -> Bool
-allDib pred x = undefined
+allFig pred x = foldDib (\x -> pred x &&) True x
 
 -- Los dos predicados se cumplen para el elemento recibido.
 andP :: Pred a -> Pred a -> Pred a
