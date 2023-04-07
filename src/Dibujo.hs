@@ -124,7 +124,16 @@ foldDib f r es r45 ap ju en (Encimar x) = encimar (foldDib f r es r45 ap ju en x
 
 -- Demostrar que `mapDib figura = id` --Facu
 mapDib :: (a -> Dibujo b) -> Dibujo a -> Dibujo b
-mapDib fun x = undefined 
+mapDib fun (Figura x) = figura x
+mapDib fun (Rotar x) = rotar (mapDib fun x)
+mapDib fun (Espejar x) = espejar (mapDib fun x)
+mapDib fun (Rot45 x) = rot45 (mapDib fun x)
+mapDib fun (Apilar x y) = apilar (mapDib fun x) (mapDib fun y)
+mapDib fun (Juntar x y) = juntar (mapDib fun x) (mapDib fun y)
+mapDib fun (Encimar x y) = encimar (mapDib fun x) (mapDib fun y)
+
+-- La demostracion se queda a cargo del lector
+
 
 -- Junta todas las figuras básicas de un dibujo. --Gaston
 figuras :: Dibujo a -> [a]
