@@ -10,10 +10,17 @@ import Dibujo (Dibujo, foldDib)
 import FloatingPic (FloatingPic, Output, grid)
 
 
+type Output a = a -> Vector -> Vector -> Vector -> Picture
 -- Interpretación de un dibujo
 -- formulas sacadas del enunciado
 interp :: Output a -> Output (Dibujo a)
-interp = undefined
+interp f (Figura a)    = f a
+interp f (Rotar a)     = f (x+w, h, -w) 
+interp f (Rot45 a)     = f (x+(w+h)/2, (w+h)/2, (h-w)/2)
+interp f (Espejar a)   = f (x+w, -w, h)
+interp f (Encimar a b) = pictures[interp f a, interp f b]
+interp f (Juntar n m a b) = pictures[ ]
+
 
 -- Configuración de la interpretación
 data Conf = Conf {
