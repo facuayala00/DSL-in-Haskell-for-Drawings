@@ -31,7 +31,9 @@ data Dibujo a = Figura a
 -- Agreguen los tipos y definan estas funciones
 
 -- Construcción de dibujo. Abstraen los constructores.
-figura :: Dibujo a -> Figura a --Benja
+-- figura :: Dibujo a -> Dibujo a --Benja
+-- figura = Figura 
+figura :: a -> Dibujo a
 figura = Figura
 
 rotar :: Dibujo a -> Dibujo a --Gaston
@@ -90,7 +92,7 @@ encimar4 a = (^^^) ((^^^) a (rotar a)) ((^^^) (r180 a) (r270 a))
 -- Cuadrado con la misma figura rotada i * 90, para i ∈ {0, ..., 3}.
 -- No confundir con encimar4!
 ciclar :: Dibujo a -> Dibujo a --Facu
-ciclar x = (.-.)((///) a (rotar a)) ((///) (r180 a) (r270 a))
+ciclar a = (.-.)((///) a (rotar a)) ((///) (r180 a) (r270 a))
 {-
     r180    r270
     r0       r90
@@ -104,13 +106,13 @@ foldDib :: (a -> b) -> (b -> b) -> (b -> b) -> (b -> b) ->
        (Float -> Float -> b -> b -> b) -> 
        (b -> b -> b) ->
        Dibujo a -> b
-foldDib f r es r45 ap ju en (Figura x) = figura x 
-foldDib f r es r45 ap ju en (Rotar x)  = rotar (foldDib f r es r45 ap ju en x)
-foldDib f r es r45 ap ju en (Espejar x) = espejar (foldDib f r es r45 ap ju en x)
-foldDib f r es r45 ap ju en (Rot45 x) = rot45 (foldDib f r es r45 ap ju en x)
-foldDib f r es r45 ap ju en (Apilar x) = apilar (foldDib f r es r45 ap ju en x)
-foldDib f r es r45 ap ju en (Juntar x) = juntar (foldDib f r es r45 ap ju en x)
-foldDib f r es r45 ap ju en (Encimar x) = encimar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Figura x)       = figura x 
+foldDib f r es r45 ap ju en (Rotar x)        = rotar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Espejar x)      = espejar (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Rot45 x)        = rot45 (foldDib f r es r45 ap ju en x)
+foldDib f r es r45 ap ju en (Apilar f1 f2 x y) = apilar f1 f2 (foldDib f r es r45 ap ju en x) (foldDib f r es r45 ap ju en y)
+foldDib f r es r45 ap ju en (Juntar f1 f2 x y) = juntar f1 f2 (foldDib f r es r45 ap ju en x) (foldDib f r es r45 ap ju en y)
+foldDib f r es r45 ap ju en (Encimar x y)    = encimar (foldDib f r es r45 ap ju en x) (foldDib f r es r45 ap ju en y)
 
 {- 
     f = figura
@@ -124,13 +126,13 @@ foldDib f r es r45 ap ju en (Encimar x) = encimar (foldDib f r es r45 ap ju en x
 
 -- Demostrar que `mapDib figura = id` --Facu
 mapDib :: (a -> Dibujo b) -> Dibujo a -> Dibujo b
-mapDib fun (Figura x) = figura x
-mapDib fun (Rotar x) = rotar (mapDib fun x)
-mapDib fun (Espejar x) = espejar (mapDib fun x)
-mapDib fun (Rot45 x) = rot45 (mapDib fun x)
-mapDib fun (Apilar x y) = apilar (mapDib fun x) (mapDib fun y)
-mapDib fun (Juntar x y) = juntar (mapDib fun x) (mapDib fun y)
-mapDib fun (Encimar x y) = encimar (mapDib fun x) (mapDib fun y)
+mapDib fun (Figura x)         = figura x
+mapDib fun (Rotar x)          = rotar (mapDib fun x)
+mapDib fun (Espejar x)        = espejar (mapDib fun x)
+mapDib fun (Rot45 x)          = rot45 (mapDib fun x)
+mapDib fun (Apilar f1 f2 x y) = apilar f1 f2 (mapDib fun x) (mapDib fun y)
+mapDib fun (Juntar f1 f2 x y) = juntar f1 f2 (mapDib fun x) (mapDib fun y)
+mapDib fun (Encimar x y)      = encimar (mapDib fun x) (mapDib fun y)
 
 -- La demostracion se queda a cargo del lector
 
