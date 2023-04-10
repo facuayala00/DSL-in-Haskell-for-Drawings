@@ -7,8 +7,8 @@ module Interp (
 
 import Graphics.Gloss(Picture, Display(InWindow), makeColorI, color, pictures, translate, white, display)
 import Dibujo (Dibujo, foldDib)
-import FloatingPic (FloatingPic, Output, grid)
-
+import FloatingPic (FloatingPic, Output, grid, half)
+import qualified Graphics.Gloss.Data.Point.Arithmetic as V
 
 -- Interpretación de un dibujo
 -- formulas sacadas del enunciado
@@ -22,10 +22,14 @@ interpEspejar :: FloatingPic -> FloatingPic
 
 
 interpRot45 :: FloatingPic -> FloatingPic
-
+interpRot45 f x w h = f (x V.+ half (w V. + h)) (half (w V.+ h)) (half (h V.- w))
 
 interpApilar :: FloatingPic -> FloatingPic -> FloatingPic
-
+interpApil n m f g x w h = pictures [f (x V.+ h') w (r V.* h), g x w h']
+  where
+    r' = n / (m + n)
+    r = m / (m + n)
+    h' = r'* h
 
 interpJuntar :: Float -> Float -> FloatingPic -> FloatingPic -> FloatingPic
 interpJuntar n m f g x w h = pictures[f (x, w', h), g (x+w', r'*w, h)]
