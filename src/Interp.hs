@@ -27,7 +27,7 @@ interpRot45 :: FloatingPic -> FloatingPic
 interpRot45 f x w h = f (x V.+ half (w V.+ h)) (half (w V.+ h)) (half (h V.- w))
 
 interpApilar :: FloatingPic -> FloatingPic -> FloatingPic
-interpApil n m f g x w h = pictures [f (x V.+ h') w (r V.* h), g x w h']
+interpApilar n m f g x w h = pictures [f (x V.+ h') w (r V.* h), g x w h']
   where
     r' = n / (m + n)
     r = m / (m + n)
