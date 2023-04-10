@@ -20,7 +20,7 @@ interpRotar f x w h = f (x V.+ w) h (V.negate w)
 
 
 interpEspejar :: FloatingPic -> FloatingPic
-interpEsp f x w h = f (x V.+ w) (V.negate w) h
+interpEspejar f x w h = f (x V.+ w) (V.negate w) h
 
 
 interpRot45 :: FloatingPic -> FloatingPic
