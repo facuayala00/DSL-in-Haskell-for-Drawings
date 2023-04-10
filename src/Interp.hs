@@ -16,13 +16,15 @@ interp :: Output a -> Output (Dibujo a)
 interp interpFig = foldDib interpFig interpRotar interpEspejar interpRot45 interpApilar interpJuntar interpEncimar
 
 interpRotar :: FloatingPic -> FloatingPic
+interpRotar f x w h = f (x V.+ w) h (V.negate w)
 
 
 interpEspejar :: FloatingPic -> FloatingPic
+interpEsp f x w h = f (x V.+ w) (V.negate w) h
 
 
 interpRot45 :: FloatingPic -> FloatingPic
-interpRot45 f x w h = f (x V.+ half (w V. + h)) (half (w V.+ h)) (half (h V.- w))
+interpRot45 f x w h = f (x V.+ half (w V.+ h)) (half (w V.+ h)) (half (h V.- w))
 
 interpApilar :: FloatingPic -> FloatingPic -> FloatingPic
 interpApil n m f g x w h = pictures [f (x V.+ h') w (r V.* h), g x w h']
