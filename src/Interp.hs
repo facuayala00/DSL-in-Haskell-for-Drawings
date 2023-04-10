@@ -26,21 +26,21 @@ interpEspejar f x w h = f (x V.+ w) (V.negate w) h
 interpRot45 :: FloatingPic -> FloatingPic
 interpRot45 f x w h = f (x V.+ half (w V.+ h)) (half (w V.+ h)) (half (h V.- w))
 
-interpApilar :: FloatingPic -> FloatingPic -> FloatingPic
+interpApilar :: Float -> Float -> FloatingPic -> FloatingPic -> FloatingPic
 interpApilar n m f g x w h = pictures [f (x V.+ h') w (r V.* h), g x w h']
-  where
-    r' = n / (m + n)
-    r = m / (m + n)
-    h' = r'* h
+    where
+        r' = n / (m + n)
+        r = m / (m + n)
+        h' = r' V.* h
 
 interpJuntar :: Float -> Float -> FloatingPic -> FloatingPic -> FloatingPic
-interpJuntar n m f g x w h = pictures[f (x, w', h), g (x+w', r'*w, h)]
+interpJuntar n m f g x w h = pictures[f x w' h, g (x V.+ w') (r' V.* w) h]
     where r' = n / (n + m)
           r  = m / (n + m)
-          w' = r * w
+          w' = r V.* w
 
 interpEncimar :: FloatingPic -> FloatingPic -> FloatingPic
-interpEncimar f g x w h = pictures[f (x, w, h), g (x, w, h)]
+interpEncimar f g x w h = pictures[f x w h, g x w h]
 
 
 -- Configuración de la interpretación
