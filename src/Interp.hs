@@ -27,10 +27,14 @@ interpRot45 :: FloatingPic -> FloatingPic
 interpApilar :: FloatingPic -> FloatingPic -> FloatingPic
 
 
-interpJuntar :: FloatingPic -> FloatingPic -> FloatingPic
-
+interpJuntar :: Float -> Float -> FloatingPic -> FloatingPic -> FloatingPic
+interpJuntar n m f g x w h = pictures[f (x, w', h), g (x+w', r'*w, h)]
+    where r' = n / (n + m)
+          r  = m / (n + m)
+          w' = r * w
 
 interpEncimar :: FloatingPic -> FloatingPic -> FloatingPic
+interpEncimar f g x w h = pictures[f (x, w, h), g (x, w, h)]
 
 
 -- Configuración de la interpretación
