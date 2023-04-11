@@ -15,11 +15,16 @@ type Escher = Bool
 
 -- El dibujoU.
 dibujoU :: Dibujo Escher -> Dibujo Escher
-dibujoU p = undefined 
+dibujoU p = encimar4 p2
+    where
+        p2 = espejar (rot45 p)   
 
 -- El dibujo t.
 dibujoT :: Dibujo Escher -> Dibujo Escher
-dibujoT p = undefined 
+dibujoT p = encimar (p) (encimar p2 p3)
+    where
+        p2 = espejar (rot45 p)
+        p3 = r270 p2
 
 -- Esquina con nivel de detalle en base a la figura p.
 esquina :: Int -> Dibujo Escher -> Dibujo Escher
