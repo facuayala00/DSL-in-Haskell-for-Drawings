@@ -9,6 +9,7 @@ import Interp (Conf(name), initial)
 import Dibujos.Ejemplo (ejemploConf)
 import Dibujos.Feo (feoConf)
 import Dibujos.Grilla (grillaConf)
+import Dibujos.Escher (escherConf)
 
 -- Lista de configuraciones de los dibujos
 configs :: [Conf]
