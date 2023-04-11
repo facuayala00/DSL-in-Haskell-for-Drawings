@@ -3,6 +3,7 @@ module Pred (
   cambiar, anyDib, allDib, orP, andP
 ) where
 
+import Dibujo
 
 -- `Pred a` define un predicado sobre figuras básicas. Por ejemplo,
 -- `(== Triangulo)` es un `Pred TriOCuat` que devuelve `True` cuando la
@@ -17,21 +18,21 @@ type Pred a = a -> Bool
 -- Por ejemplo, `cambiar (== Triangulo) (\x -> Rotar (Figura x))` rota
 -- todos los triángulos.
 cambiar :: Pred a -> (a -> Dibujo a) -> Dibujo a -> Dibujo a
-cambiar pred fun x = mapDib (\x -> if pred x then fun x else Figura x) x
+cambiar pred fun x = mapDib (\x -> if pred x then fun x else figura x) x
 
 
 -- Alguna figura satisface el predicado.
-anyFig :: Pred a -> Dibujo a -> Bool
-anyFig pred x = foldDib (\x -> pred x ||) False x
+anyDib :: Pred a -> Dibujo a -> Bool
+anyDib pred x = foldDib pred id id id (\ _ _ x y -> x || y) (\ _ _ x y -> x || y) (\x y -> x || y) x
 
 -- Todas las figuras satisfacen el predicado.
-allFig :: Pred a -> Dibujo a -> Bool
-allFig pred x = foldDib (\x -> pred x &&) True x
+allDib :: Pred a -> Dibujo a -> Bool
+allDib pred x = foldDib pred id id id (\ _ _ a b -> a && b) (\ _ _ a b -> a && b) (\x y -> x && y) x
 
 -- Los dos predicados se cumplen para el elemento recibido.
 andP :: Pred a -> Pred a -> Pred a
-andP pred1 pred2 = pred1 && pred2
+andP pred1 pred2 e = pred1 e && pred2 e
 
 -- Algún predicado se cumple para el elemento recibido.
 orP :: Pred a -> Pred a -> Pred a
-orP pred1 pred2 = pred1 || pred2
+orP pred1 pred2 e = pred1 e || pred2 e
