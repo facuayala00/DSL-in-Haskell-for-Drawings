@@ -38,9 +38,12 @@ lado 0 _ = blank
 lado n p = cuarteto (lado (n-1) p ) (lado (n-1) p) (rotar (dibujoT p)) dibujoT p 
 
 -- Por suerte no tenemos que poner el tipo!
-noneto p q r s t u v w x = undefined
-
+noneto p q r s t u v w x = apilar 1 2 (juntar 1 2 p (juntar 1 1 q r)) 
+                           (apilar 1 1 (juntar 1 2 s (juntar 1 1 t u)) 
+                           (juntar 1 2 v (juntar 1 1 w x)))
 -- El dibujo de Escher:
 escher :: Int -> Escher -> Dibujo Escher
-escher = undefined
+escher n p = noneto (esquina n p) (lado n p) (r270 (esquina n p))
+                    (rotar (lado n p)) (dibujoU p) (r270 (lado n p))
+                    (rotar (esquina n p)) (r180 (lado n p)) (r180 (esquina n p))
 
