@@ -26,13 +26,16 @@ dibujoT p = encimar (p) (encimar p2 p3)
         p2 = espejar (rot45 p)
         p3 = r270 p2
 
--- Esquina con nivel de detalle en base a la figura p.
+-- Esquina con nivel de detalle n en base a la figura p.
 esquina :: Int -> Dibujo Escher -> Dibujo Escher
-esquina n p = undefined
+esquina 0 _ = blank
+esquina n p = cuarteto (esquina (n-1) p) (lado (n-1) p) (rotar (lado (n-1) p)) dibujoU p
+
 
 -- Lado con nivel de detalle.
 lado :: Int -> Dibujo Escher -> Dibujo Escher
-lado n p = undefined
+lado 0 _ = blank
+lado n p = cuarteto (lado (n-1) p ) (lado (n-1) p) (rotar (dibujoT p)) dibujoT p 
 
 -- Por suerte no tenemos que poner el tipo!
 noneto p q r s t u v w x = undefined
