@@ -1,13 +1,14 @@
 {-# LANGUAGE LambdaCase #-}
-module Dibujo (
-    Dibujo,
+module Dibujo 
+    ( Dibujo,
     figura, rotar, espejar, rot45, apilar, juntar, encimar,
     r180, r270,
     (.-.), (///), (^^^),
     cuarteto, encimar4, ciclar,
     foldDib, mapDib,
     figuras
-) where
+) 
+where
 
 
 {-
